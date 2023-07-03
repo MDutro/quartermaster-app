@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
-import { Products } from './views/Products';
-import { ColorModeContext, useMode } from './theme';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { Topbar, Sidebar } from './views/global';
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { Products } from "./views/Products";
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import Topbar from "./views/global/Topbar";
 
 function App() {
   const [theme, colorMode] = useMode();
