@@ -27,8 +27,10 @@ export const Products = () => {
             <h1>Products</h1>
             <ul>
                 {products.length > 0 && products.map((product: ProductType, index) => {
-                    return <li key={index}>
+                    return <li key={index} style={{paddingBottom: '20px'}}>
                         <div>{product.name}</div>
+                        <div>{product.description}</div>
+                        <div>{product.quantity}</div>
                      </li>
                 })}
             </ul>
