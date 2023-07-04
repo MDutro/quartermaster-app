@@ -19,7 +19,7 @@ const Topbar = () => {
       <Box
         sx={{
           display: "flex",
-          bgcolor: "colors.primary[400]",
+          bgcolor: colors.primary[400],
           borderRadius: "3px",
         }}
       >
