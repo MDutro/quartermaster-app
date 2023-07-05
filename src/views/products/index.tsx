@@ -1,33 +1,16 @@
-import { useState, useEffect } from "react";
-
-type product = {
-  id: string;
-  name: string;
-  adjective: string | null;
-  description: string;
-  quantity: number;
-  createdAt: string;
-  updatedAt: string | null;
-};
+import { useState, useEffect, useContext } from "react";
+import { ProductContext } from "../../context/productContext";
+import { ProductContextType, IProduct } from "../../types/product";
 
 export const Products = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:4005/api/products");
-      const json = await response.json();
-      setProducts(json);
-    };
-    fetchData();
-  }, []);
+  const { products } = useContext(ProductContext) as ProductContextType;
 
   return (
     <div>
       <h1>Products</h1>
       <ul>
         {products.length > 0 &&
-          products.map((product: product, index) => {
+          products.map((product: IProduct, index) => {
             return (
               <li key={index} style={{ paddingBottom: "20px" }}>
                 <div>{product.name}</div>

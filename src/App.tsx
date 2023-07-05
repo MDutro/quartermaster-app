@@ -1,14 +1,30 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { useEffect, useContext } from "react";
+import { Route, Routes } from "react-router-dom";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
 import Topbar from "./views/global/Topbar";
 import Sidebar from "./views/global/Sidebar";
-import { Products } from "/home/dutro/code/quartermaster-app/src/views/products/Products";
+import { Products } from "./views/products";
 //import ProductsTable from "./views/products/ProductsTable";
 //import Form from "./views/form";
+import { ProductContext } from "./context/productContext";
+import { ProductContextType, IProduct } from "./types/product";
+import ProuctDataService from "./services/product.service";
 
 function App() {
+  const { setProductsContext } = useContext(
+    ProductContext
+  ) as ProductContextType;
   const [theme, colorMode] = useMode();
+
+  useEffect(() => {
+    console.log("@@@ useEffect running!!! @@@");
+    const fetchData = async () => {
+      const response = await ProuctDataService.getAll();
+      setProductsContext(response.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <ColorModeContext.Provider value={colorMode as any}>

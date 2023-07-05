@@ -198,6 +198,13 @@ export const themeSettings = (mode: any) => {
           },
         },
       },
+      MuiListItemText: {
+        styleOverrides: {
+          primary: {
+            fontSize: 16,
+          },
+        },
+      },
     },
   };
 };

@@ -5,22 +5,20 @@ import {
   Box,
   Divider,
   Drawer,
-  IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Toolbar,
-  Typography,
   useTheme,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import TocIcon from "@mui/icons-material/Toc";
 import TableRowsOutlinedIcon from "@mui/icons-material/TableRowsOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 
 const drawerWidth: number = 240;
 
@@ -29,6 +27,70 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Home");
+
+  type MenuItemProps = {
+    viewName: string;
+    linkTo: string;
+    icon: ReactJSXElement;
+  };
+
+  const views = [
+    {
+      name: "Home",
+      path: "/",
+      icon: <HomeOutlinedIcon />,
+    },
+    {
+      name: "Products Table",
+      path: "/products-table",
+      icon: <TableRowsOutlinedIcon />,
+    },
+  ];
+
+  const setLinkSelectedBackgroundColor = (mode: string) => {
+    if (mode === "light") {
+      return colors.primary[900];
+    } else {
+      return colors.primary[200];
+    }
+  };
+
+  const MenuItem = (props: MenuItemProps) => {
+    return (
+      <ListItem disablePadding>
+        <Link
+          to={props.linkTo}
+          style={{
+            textDecoration: "none",
+            width: "100%",
+            color:
+              selected === props.viewName
+                ? colors.primary[500]
+                : colors.primary[100],
+            background:
+              selected === props.viewName
+                ? setLinkSelectedBackgroundColor(theme.palette.mode)
+                : colors.primary[400],
+          }}
+          onClick={() => setSelected(props.viewName)}
+        >
+          <ListItemButton>
+            <ListItemIcon
+              sx={{
+                color:
+                  selected === props.viewName
+                    ? colors.primary[500]
+                    : colors.primary[100],
+              }}
+            >
+              {props.icon}
+            </ListItemIcon>
+            <ListItemText primary={props.viewName} />
+          </ListItemButton>
+        </Link>
+      </ListItem>
+    );
+  };
 
   return (
     <Box>
@@ -47,40 +109,14 @@ const Sidebar = () => {
         <Toolbar />
         <Divider />
         <List>
-          <ListItem disablePadding sx={{}}>
-            <Link
-              to="/"
-              style={{
-                textDecoration: "none",
-                width: "100%",
-                color: colors.primary[100],
-              }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <HomeOutlinedIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-          <ListItem disablePadding>
-            <Link
-              to="/products-table"
-              style={{
-                textDecoration: "none",
-                width: "100%",
-                color: colors.primary[100],
-              }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <TableRowsOutlinedIcon />
-                </ListItemIcon>
-                <ListItemText primary="Products Table" />
-              </ListItemButton>
-            </Link>
-          </ListItem>
+          {views.map((view, index) => (
+            <MenuItem
+              viewName={view.name}
+              linkTo={view.path}
+              icon={view.icon}
+              key={index}
+            />
+          ))}
         </List>
         <Divider />
         <List></List>
