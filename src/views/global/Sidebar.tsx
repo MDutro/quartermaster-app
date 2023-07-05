@@ -20,7 +20,7 @@ import TableRowsOutlinedIcon from "@mui/icons-material/TableRowsOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 
-const drawerWidth: number = 240;
+const drawerWidth: number = 220;
 
 const Sidebar = () => {
   const theme = useTheme();

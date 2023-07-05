@@ -4,7 +4,7 @@ import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
 import Topbar from "./views/global/Topbar";
 import Sidebar from "./views/global/Sidebar";
-import { Products } from "./views/products";
+import { Products, ProductsTable } from "./views/products";
 //import ProductsTable from "./views/products/ProductsTable";
 //import Form from "./views/form";
 import { ProductContext } from "./context/productContext";
@@ -35,7 +35,7 @@ function App() {
           <main className="content">
             <Topbar />
             <Routes>
-              {/* <Route path="/products-table" element={<ProductsTable />}></Route> */}
+              <Route path="/products-table" element={<ProductsTable />}></Route>
               <Route path="/products" element={<Products />}></Route>
               {/* <Route path="/form" element={<Form />}></Route> */}
             </Routes>
