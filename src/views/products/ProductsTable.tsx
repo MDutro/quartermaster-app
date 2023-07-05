@@ -1,10 +1,7 @@
 import { useContext } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { Box, useTheme } from "@mui/material";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockClockOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import { ProductContextType } from "../../types/product";
 import { ProductContext } from "../../context/productContext";
 import Header from "../../components/Header";
@@ -49,7 +46,7 @@ const ProductsTable = () => {
             borderBottom: "none",
           },
           "& .name-column--cell": {
-            color: colors.greenAccent[300],
+            color: colors.greenAccent[400],
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.blueAccent[700],
@@ -64,9 +61,24 @@ const ProductsTable = () => {
             borderBottomLeftRadius: "4px",
             borderBottomRightRadius: "4px",
           },
+          "& .MuiDataGrid-toolbarContainer": {
+            "& .MuiButton-text": {
+              color: `${colors.gray[100]} !important`,
+            },
+          },
+          "& .MuiFormControl-root .MuiFormLabel-root": {
+            color:
+              theme.palette.mode === "dark"
+                ? colors.gray[100]
+                : colors.gray[500],
+          },
         }}
       >
-        <DataGrid rows={products} columns={columns} />
+        <DataGrid
+          rows={products}
+          columns={columns}
+          slots={{ toolbar: GridToolbar }}
+        />
       </Box>
     </Box>
   );

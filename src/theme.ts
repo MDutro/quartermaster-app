@@ -205,6 +205,13 @@ export const themeSettings = (mode: any) => {
           },
         },
       },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            lineHeight: 0,
+          },
+        },
+      },
     },
   };
 };
