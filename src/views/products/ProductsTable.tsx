@@ -72,6 +72,12 @@ const ProductsTable = () => {
                 ? colors.gray[100]
                 : colors.gray[500],
           },
+          "& .MuiButtonBase-root .MuiButton-textPrimary": {
+            color:
+              theme.palette.mode === "dark"
+                ? colors.primary[200]
+                : colors.primary[800],
+          },
         }}
       >
         <DataGrid

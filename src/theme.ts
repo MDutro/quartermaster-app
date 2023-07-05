@@ -131,7 +131,7 @@ export const themeSettings = (mode: any) => {
       ...(mode === "dark"
         ? {
             primary: {
-              main: colors.primary[500],
+              main: colors.blueAccent[700],
             },
             secondary: {
               main: colors.greenAccent[500],
@@ -147,7 +147,7 @@ export const themeSettings = (mode: any) => {
           }
         : {
             primary: {
-              main: colors.primary[100],
+              main: colors.primary[200],
             },
             secondary: {
               main: colors.greenAccent[500],
@@ -158,7 +158,7 @@ export const themeSettings = (mode: any) => {
               light: colors.gray[100],
             },
             background: {
-              default: "#fcfcfc",
+              default: "#e0e0e0",
             },
           }),
     },
@@ -194,7 +194,8 @@ export const themeSettings = (mode: any) => {
       MuiDrawer: {
         styleOverrides: {
           paper: {
-            backgroundColor: mode === "dark" ? colors.primary[400] : "#fcfcfc",
+            backgroundColor:
+              mode === "dark" ? colors.primary[400] : colors.gray[200],
           },
         },
       },
@@ -209,6 +210,7 @@ export const themeSettings = (mode: any) => {
         styleOverrides: {
           root: {
             lineHeight: 0,
+            color: mode === "dark" ? "#fcfcfc" : colors.primary[200],
           },
         },
       },
