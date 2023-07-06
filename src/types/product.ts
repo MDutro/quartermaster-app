@@ -7,8 +7,3 @@ export interface IProduct {
   createdAt: string;
   updatedAt: string | null;
 }
-
-export type ProductContextType = {
-  products: IProduct[];
-  setProductsContext: (products: IProduct[]) => void;
-};

@@ -4,24 +4,26 @@ import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
 import Topbar from "./views/global/Topbar";
 import Sidebar from "./views/global/Sidebar";
-import { Products, ProductsTable } from "./views/products";
-//import ProductsTable from "./views/products/ProductsTable";
-//import Form from "./views/form";
-import { ProductContext } from "./context/productContext";
-import { ProductContextType, IProduct } from "./types/product";
+import { ProductsTable } from "./views/products";
+import { IProduct } from "./types/product";
 import ProuctDataService from "./services/product.service";
+import { useAppSelector, useAppDispatch } from "./state/hooks";
+import {
+  allProducts,
+  fetchProducts,
+} from "./state/features/product/productSlice";
 
 function App() {
-  const { setProductsContext } = useContext(
-    ProductContext
-  ) as ProductContextType;
   const [theme, colorMode] = useMode();
+  const products = useAppSelector(allProducts);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     console.log("@@@ useEffect running!!! @@@");
     const fetchData = async () => {
       const response = await ProuctDataService.getAll();
-      setProductsContext(response.data);
+      //setProductsContext(response.data);
+      dispatch(fetchProducts());
     };
     fetchData();
   }, []);
@@ -36,7 +38,7 @@ function App() {
             <Topbar />
             <Routes>
               <Route path="/products-table" element={<ProductsTable />}></Route>
-              <Route path="/products" element={<Products />}></Route>
+              {/* <Route path="/products" element={<Products />}></Route> */}
               {/* <Route path="/form" element={<Form />}></Route> */}
             </Routes>
           </main>
