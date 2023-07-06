@@ -1,15 +1,14 @@
-import { useContext } from "react";
 import { Box, useTheme } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { ProductContextType } from "../../types/product";
-import { ProductContext } from "../../context/productContext";
 import Header from "../../components/Header";
+import { useAppSelector } from "../../state/hooks";
+import { allProducts } from "../../state/features/product/productSlice";
 
 const ProductsTable = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { products } = useContext(ProductContext) as ProductContextType;
+  const products = useAppSelector(allProducts);
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 1.05 },
@@ -72,10 +71,16 @@ const ProductsTable = () => {
                 ? colors.gray[100]
                 : colors.gray[500],
           },
+          "& .MuiButtonBase-root .MuiButton-textPrimary": {
+            color:
+              theme.palette.mode === "dark"
+                ? colors.primary[200]
+                : colors.primary[800],
+          },
         }}
       >
         <DataGrid
-          rows={products}
+          rows={products as any}
           columns={columns}
           slots={{ toolbar: GridToolbar }}
         />
