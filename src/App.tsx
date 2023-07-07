@@ -40,6 +40,6 @@ function App() {
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
-}
+};
 
 export default App;
