@@ -209,7 +209,6 @@ export const themeSettings = (mode: any) => {
       MuiButton: {
         styleOverrides: {
           root: {
-            lineHeight: 0,
             color: mode === "dark" ? "#fcfcfc" : colors.primary[200],
           },
         },
