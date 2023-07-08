@@ -5,6 +5,7 @@ import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
 import Topbar from "./views/global/Topbar";
 import Sidebar from "./views/global/Sidebar";
 import { ProductsTable } from "./views/products";
+import { Form } from "./views/form";
 import { useAppDispatch } from "./state/hooks";
 import {
   fetchProducts,
@@ -33,7 +34,7 @@ function App() {
             <Routes>
               <Route path="/products-table" element={<ProductsTable />}></Route>
               {/* <Route path="/products" element={<Products />}></Route> */}
-              {/* <Route path="/form" element={<Form />}></Route> */}
+              <Route path="/form" element={<Form />}></Route>
             </Routes>
           </main>
         </div>

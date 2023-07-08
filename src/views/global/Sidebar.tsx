@@ -44,6 +44,11 @@ const Sidebar = () => {
       path: "/products-table",
       icon: <TableRowsOutlinedIcon />,
     },
+     {
+      name: "New Product",
+      path: "/form",
+      icon: <FeedOutlinedIcon />,
+    },
   ];
 
   const setLinkSelectedBackgroundColor = (mode: string) => {
