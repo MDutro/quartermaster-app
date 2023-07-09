@@ -1,21 +1,18 @@
 import { Box, Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
 import Header from "../../components/Header";
-import { IProduct } from "../../types/product";
+import { useAppDispatch } from "../../state/hooks";
+import { addNewProduct } from "../../state/features/product/productSlice";
+import { IProductFormInitialValues } from "../../types/product";
 
-interface IFormInitialValues {
-  name: string;
-  adjective: string;
-  description: string;
-  quantity: number;
-}
-
-const initialValues: IFormInitialValues = {
+const initialValues: IProductFormInitialValues = {
   name: "",
   adjective: "",
   description: "",
   quantity: 0,
+  country_of_origin: "",
 };
 
 const productSchema = yup.object().shape({
@@ -23,11 +20,17 @@ const productSchema = yup.object().shape({
   adjective: yup.string(),
   description: yup.string().required("required"),
   quantity: yup.number().required("required"),
+  country_of_origin: yup.string().required("required"),
 });
 
 const Form = () => {
-  const handleFormSubmit = (value: IFormInitialValues) => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleFormSubmit = (value: IProductFormInitialValues) => {
+    dispatch(addNewProduct(value));
     console.log(value);
+    navigate("/products-table");
   };
 
   return (
@@ -85,7 +88,7 @@ const Form = () => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+                type="number"
                 label="Quantity"
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -93,6 +96,23 @@ const Form = () => {
                 name="quantity"
                 error={!!touched.quantity && !!errors.quantity}
                 helperText={touched.quantity && errors.quantity}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Country"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.country_of_origin}
+                name="country_of_origin"
+                error={
+                  !!touched.country_of_origin && !!errors.country_of_origin
+                }
+                helperText={
+                  touched.country_of_origin && errors.country_of_origin
+                }
                 sx={{ gridColumn: "span 2" }}
               />
             </Box>

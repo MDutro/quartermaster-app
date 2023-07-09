@@ -1,4 +1,5 @@
 const products = require("express").Router();
+const { v4: uuidv4 } = require("uuid");
 const db = require("../models");
 const { Product } = db;
 
@@ -26,6 +27,27 @@ products.get("/:id", async (req, res) => {
   }
 });
 
+products.post("/create-product", async (req, res) => {
+  try {
+    const id = uuidv4();
+    const newProduct = {
+      id: id,
+      name: req.body.name,
+      adjective: req.body.adjective,
+      description: req.body.description,
+      quantity: req.body.quantity,
+      country_of_origin: req.body.country_of_origin,
+      createdAt: new Date().toISOString(),
+    };
+    const createdProduct = await Product.create(newProduct);
+    res.status(200).send(createdProduct);
+  } catch (err) {
+    res.status(500).json("Internal server error");
+    console.log(err);
+  }
+});
+
+// update product
 products.put("/:id", async (req, res) => {
   try {
     let id = req.params.id;

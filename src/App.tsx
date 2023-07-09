@@ -7,9 +7,7 @@ import Sidebar from "./views/global/Sidebar";
 import { ProductsTable } from "./views/products";
 import { Form } from "./views/form";
 import { useAppDispatch } from "./state/hooks";
-import {
-  fetchProducts,
-} from "./state/features/product/productSlice";
+import { fetchProducts } from "./state/features/product/productSlice";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -21,7 +19,7 @@ function App() {
       dispatch(fetchProducts());
     };
     fetchData();
-  }, [dispatch]);
+  });
 
   return (
     <ColorModeContext.Provider value={colorMode as any}>
@@ -41,6 +39,6 @@ function App() {
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
-};
+}
 
 export default App;

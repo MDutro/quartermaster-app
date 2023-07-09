@@ -27,6 +27,7 @@ const ProductsTable = () => {
     },
     { field: "adjective", headerName: "Adjective" },
     { field: "description", headerName: "Description", flex: 1 },
+    { field: "country_of_origin", headerName: "Country", flex: 0.75 },
     { field: "createdAt", headerName: "Created At", flex: 0.75 },
     { field: "updatedAt", headerName: "Updated At", flex: 0.75 },
   ];
