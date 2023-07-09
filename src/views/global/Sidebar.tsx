@@ -24,8 +24,7 @@ const drawerWidth: number = 220;
 
 const Sidebar = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const colors = tokens(theme.palette.mode);;
   const [selected, setSelected] = useState("Home");
 
   type MenuItemProps = {
@@ -44,6 +43,11 @@ const Sidebar = () => {
       name: "Products Table",
       path: "/products-table",
       icon: <TableRowsOutlinedIcon />,
+    },
+     {
+      name: "New Product",
+      path: "/form",
+      icon: <FeedOutlinedIcon />,
     },
   ];
 

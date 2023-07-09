@@ -1,32 +1,25 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
 import Topbar from "./views/global/Topbar";
 import Sidebar from "./views/global/Sidebar";
 import { ProductsTable } from "./views/products";
-import { IProduct } from "./types/product";
-import ProuctDataService from "./services/product.service";
-import { useAppSelector, useAppDispatch } from "./state/hooks";
-import {
-  allProducts,
-  fetchProducts,
-} from "./state/features/product/productSlice";
+import { Form } from "./views/form";
+import { useAppDispatch } from "./state/hooks";
+import { fetchProducts } from "./state/features/product/productSlice";
 
 function App() {
   const [theme, colorMode] = useMode();
-  const products = useAppSelector(allProducts);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     console.log("@@@ useEffect running!!! @@@");
     const fetchData = async () => {
-      const response = await ProuctDataService.getAll();
-      //setProductsContext(response.data);
       dispatch(fetchProducts());
     };
     fetchData();
-  }, []);
+  });
 
   return (
     <ColorModeContext.Provider value={colorMode as any}>
@@ -39,7 +32,7 @@ function App() {
             <Routes>
               <Route path="/products-table" element={<ProductsTable />}></Route>
               {/* <Route path="/products" element={<Products />}></Route> */}
-              {/* <Route path="/form" element={<Form />}></Route> */}
+              <Route path="/form" element={<Form />}></Route>
             </Routes>
           </main>
         </div>
