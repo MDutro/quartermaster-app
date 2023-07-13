@@ -7,14 +7,6 @@ import { useAppDispatch } from "../../state/hooks";
 import { addNewProduct } from "../../state/features/product/productSlice";
 import { IProductFormInitialValues } from "../../types/product";
 
-const initialValues: IProductFormInitialValues = {
-  name: "",
-  adjective: "",
-  description: "",
-  quantity: 0,
-  country_of_origin: "",
-};
-
 const productSchema = yup.object().shape({
   name: yup.string().required("required"),
   adjective: yup.string(),
@@ -23,7 +15,7 @@ const productSchema = yup.object().shape({
   country_of_origin: yup.string().required("required"),
 });
 
-const Form = () => {
+const ProductForm = (props: IProductFormInitialValues) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -41,7 +33,7 @@ const Form = () => {
       />
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
+        initialValues={props}
         validationSchema={productSchema}
       >
         {({
@@ -147,4 +139,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default ProductForm;

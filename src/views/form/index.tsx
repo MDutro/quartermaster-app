@@ -1,4 +1,3 @@
-import Form from "./Form"
+import ProductForm from "./ProductForm";
 
-
-export { Form }
+export { ProductForm };

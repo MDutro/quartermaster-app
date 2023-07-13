@@ -24,7 +24,7 @@ const drawerWidth: number = 220;
 
 const Sidebar = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);;
+  const colors = tokens(theme.palette.mode);
   const [selected, setSelected] = useState("Home");
 
   type MenuItemProps = {
@@ -44,7 +44,7 @@ const Sidebar = () => {
       path: "/products-table",
       icon: <TableRowsOutlinedIcon />,
     },
-     {
+    {
       name: "New Product",
       path: "/form",
       icon: <FeedOutlinedIcon />,
@@ -111,7 +111,7 @@ const Sidebar = () => {
         anchor="left"
       >
         <Toolbar />
-        <Divider />
+        <Divider sx={{ marginBottom: "20px" }} />
         <List>
           {views.map((view, index) => (
             <MenuItem
@@ -122,7 +122,6 @@ const Sidebar = () => {
             />
           ))}
         </List>
-        <Divider />
         <List></List>
       </Drawer>
     </Box>

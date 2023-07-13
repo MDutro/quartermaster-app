@@ -5,9 +5,18 @@ import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
 import Topbar from "./views/global/Topbar";
 import Sidebar from "./views/global/Sidebar";
 import { ProductsTable } from "./views/products";
-import { Form } from "./views/form";
+import { ProductForm } from "./views/form";
 import { useAppDispatch } from "./state/hooks";
 import { fetchProducts } from "./state/features/product/productSlice";
+import { IProductFormInitialValues } from "./types/product";
+
+const initialValues: IProductFormInitialValues = {
+  name: "",
+  adjective: "",
+  description: "",
+  quantity: 0,
+  country_of_origin: "",
+};
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -32,7 +41,10 @@ function App() {
             <Routes>
               <Route path="/products-table" element={<ProductsTable />}></Route>
               {/* <Route path="/products" element={<Products />}></Route> */}
-              <Route path="/form" element={<Form />}></Route>
+              <Route
+                path="/new-product"
+                element={<ProductForm {...initialValues} />}
+              ></Route>
             </Routes>
           </main>
         </div>
